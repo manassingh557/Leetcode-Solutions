@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        set<int> a;     //creating set to avoid duplicate elements
+        int i=0,j=0;    //two pointers for each vector
+        sort(nums1.begin(),nums1.end());    //sorting both vectors
+        sort(nums2.begin(),nums2.end());
+        while(i<nums1.size() && j<nums2.size())
+        {
+            if(nums1[i]<nums2[j])   //if first element is less then increment it
+                i++;
+            else if(nums2[j]<nums1[i])  //otherwise increment second pointer
+                j++;
+            else
+            {
+                a.insert(nums1[i]);     //insert element to set
+                i++;
+                j++;
+            }
+        }
+        vector<int> ans;    //copy all elements from set to vector
+        for(auto it:a)
+            ans.push_back(it);
+        return ans;
+    }
+};
